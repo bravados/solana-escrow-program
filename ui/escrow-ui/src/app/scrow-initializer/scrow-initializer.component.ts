@@ -12,19 +12,14 @@ export class ScrowInitializerComponent implements OnInit {
 
   model: EscrowInitializer;
 
-  submitted = false;
-
   constructor() {
     this.model = new EscrowInitializer('', '', '', 0, '', 0);
   }
 
-  onSubmit() {
-    this.submitted = true;
+  async onSubmit() {
     console.log(this.model);
-  }
 
-  initEscrow() {
-    const escrowState: EscrowState = {
+    let escrowState: EscrowState = {
       escrowAccountPubkey: null,
       isInitialized: null,
       initializerAccountPubkey: null,
@@ -33,34 +28,16 @@ export class ScrowInitializerComponent implements OnInit {
       expectedAmount: null
     } as EscrowState;
 
-    const onInitEscrow = async () => {
-      try {
-        const {
-          escrowAccountPubkey,
-          isInitialized,
-          initializerAccountPubkey,
-          XTokenTempAccountPubkey,
-          initializerYTokenAccount,
-          expectedAmount
-        } = await initEscrow(
-          this.model.mainAddress,
-          this.model.tokenAccountX,
-          this.model.amountOfX,
-          this.model.tokenAccountY,
-          this.model.amountOfY,
-          this.model.programId
-        );
-        escrowState.escrowAccountPubkey = escrowAccountPubkey;
-        escrowState.isInitialized = isInitialized;
-        escrowState.initializerAccountPubkey = initializerAccountPubkey;
-        escrowState.XTokenTempAccountPubkey = XTokenTempAccountPubkey;
-        escrowState.initializerYTokenAccount = initializerYTokenAccount;
-        escrowState.expectedAmount = expectedAmount;
-      } catch (err) {
-        console.log(err);
-      }
-    }
+    escrowState = await initEscrow(
+      this.model.mainAddress,
+      this.model.tokenAccountX,
+      this.model.amountOfX,
+      this.model.tokenAccountY,
+      this.model.amountOfY,
+      this.model.programId
+    );
 
+    console.log(escrowState);
   }
 
   ngOnInit(): void {

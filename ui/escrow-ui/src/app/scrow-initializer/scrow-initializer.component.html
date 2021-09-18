@@ -10,7 +10,7 @@
 
         <div class="form-group">
             <label for="programId">Program ID</label>
-            <input type="number" class="form-control" id="programId" required [(ngModel)]="model.programId" name="programId">
+            <input type="text" class="form-control" id="programId" required [(ngModel)]="model.programId" name="programId">
         </div>
 
         <div class="form-group">
@@ -34,6 +34,6 @@
         </div>
 
         <button type="submit" class="btn btn-success" [disabled]="!escrowInitializerForm.form.valid">Submit</button>
-        <button type="button" class="btn btn-default" (click)="reset(); escrowInitializerForm.reset()">Reset</button>
+        <button type="button" class="btn btn-default" (click)="reset();">Reset</button>
     </form>
 </div>

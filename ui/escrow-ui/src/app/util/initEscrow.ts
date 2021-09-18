@@ -14,7 +14,7 @@ export const initEscrow = async (
     escrowProgramIdString: string) => {
     const initializerXTokenAccountPubkey = new PublicKey(initializerXTokenAccountPubkeyString);
 
-    // @ts-expect-error
+    //@ts-expect-error
     const XTokenMintAccountPubkey = new PublicKey((await connection.getParsedAccountInfo(initializerXTokenAccountPubkey, 'singleGossip')).value!.data.parsed.info.mint);
 
     const privateKeyDecoded = privateKeyByteArray.split(',').map(s => parseInt(s));

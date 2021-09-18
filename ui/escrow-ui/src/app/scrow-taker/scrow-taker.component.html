@@ -1,1 +1,44 @@
-<p>scrow-taker works!</p>
+<div class="container">
+    <p>Taker</p>
+
+    <form (ngSubmit)="onSubmit()" #escrowTakerForm="ngForm">
+        <div class="form-group">
+            <label for="mainAddress">Main Address (wallet)</label>
+            <input type="text" class="form-control" id="mainAddress" required [(ngModel)]="model.mainAddress"
+                name="mainAddress" #mainAddress="ngModel">
+        </div>
+
+        <div class="form-group">
+            <label for="programId">Program ID</label>
+            <input type="text" class="form-control" id="programId" required [(ngModel)]="model.programId" name="programId">
+        </div>
+
+        <div class="form-group">
+            <label for="escrowStateAddress">Escrow State Address</label>
+            <input type="text" class="form-control" id="escrowStateAddress" required [(ngModel)]="model.escrowStateAddress" name="escrowStateAddress">
+        </div>
+
+        <div class="form-group">
+            <label for="tokenAccountX">Token Account used to receive the tokens</label>
+            <input type="text" class="form-control" id="tokenAccountX" required [(ngModel)]="model.tokenAccountX" name="tokenAccountX">
+        </div>
+
+        <div class="form-group">
+            <label for="amountOfX">Amount of tokens to receive</label>
+            <input type="number" class="form-control" id="amountOfX" required [(ngModel)]="model.amountOfX" name="amountOfX">
+        </div>
+
+        <div class="form-group">
+            <label for="tokenAccountY">Token Account used to send the tokens</label>
+            <input type="text" class="form-control" id="tokenAccountY" required [(ngModel)]="model.tokenAccountY" name="tokenAccountY">
+        </div>
+
+        <div class="form-group">
+            <label for="amountOfY">Amount of tokens to send</label>
+            <input type="number" class="form-control" id="amountOfY" required [(ngModel)]="model.amountOfY" name="amountOfX">
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="!escrowTakerForm.form.valid">Submit</button>
+        <button type="button" class="btn btn-default" (click)="reset();">Reset</button>
+    </form>
+</div>
